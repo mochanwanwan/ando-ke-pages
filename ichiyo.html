@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="ja" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>安東家 綴・一葉</title>
+<style>
+:root{--paper:#FBFAF7;--sumi:#26251F;--sumi2:#5A5850;--sumi3:#8A877C;--rule:#D8D5CB;--rule2:#B9B5A6;--shu:#B0402D;--sink:#EEECE5;
+--mincho:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;--gothic:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;--mono:var(--gothic)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--sumi);font-family:var(--mincho);font-size:15.5px;line-height:1.9;font-feature-settings:"palt" 0}
+main{max-width:720px;margin:0 auto;padding:48px 28px 80px}
+h1,h2,h3,h4{font-family:var(--mincho);font-weight:700;margin:0;text-wrap:balance}
+h2{font-size:1.5rem;letter-spacing:.04em;margin:56px 0 18px;padding-bottom:8px;border-bottom:1px solid var(--sumi)}
+h2 .n{color:var(--shu);font-weight:500;margin-right:.8em;font-size:1.1rem}
+h3{font-size:1.15rem;margin:34px 0 10px}
+h3 .n{color:var(--shu);font-weight:500;margin-right:.7em}
+h4{font-size:1.02rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.g{font-family:var(--gothic);font-size:.86rem;color:var(--sumi2);line-height:1.7}
+.who{font-family:var(--gothic);font-size:.78rem;color:var(--sumi3);margin-left:.5em}
+/* 表紙 */
+.cover{min-height:70vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:14px}
+.cover .kamon svg{width:64px;height:64px;display:block;margin:0 auto 4px}
+.cover .kind{font-family:var(--gothic);font-size:.85rem;letter-spacing:.3em;color:var(--sumi2)}
+.cover h1{font-size:3rem;letter-spacing:.08em;line-height:1.2}
+.cover .honseki{font-size:1rem;color:var(--sumi2)}
+.cover .date{font-family:var(--gothic);font-size:.9rem;color:var(--sumi3);margin-top:18px}
+/* 目次 */
+.toc{font-family:var(--gothic);font-size:.92rem;column-count:2;column-gap:32px;margin:6px 0 16px}
+.toc div{break-inside:avoid;padding:3px 0;border-bottom:1px dotted var(--rule)}
+.toc .n{color:var(--shu);margin-right:.6em}
+.toc>div:first-child{column-span:all} /* 章の見出しは一行を取り、右の列は節の一から並ぶ */
+/* 表 */
+.tbl{margin:10px 0 18px;overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-family:var(--gothic);font-size:.88rem;line-height:1.6;border-top:1.5px solid var(--sumi);border-bottom:1.5px solid var(--sumi)}
+th{font-weight:500;color:var(--sumi2);text-align:left;padding:7px 10px 7px 0;border-bottom:1px solid var(--sumi);vertical-align:bottom;font-size:.82rem;letter-spacing:.04em;white-space:nowrap}
+td{padding:7px 10px 7px 0;vertical-align:top;border-bottom:1px solid var(--rule)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.lb{white-space:nowrap}
+/* 記録（札の代わり） */
+.rec{margin:0 0 6px;padding:10px 0 12px;border-bottom:1px solid var(--rule)}
+.rec:last-of-type{border-bottom:0}
+.rec h4{margin:0 0 6px}
+.rec h4 small{font-family:var(--gothic);font-weight:400;font-size:.78rem;color:var(--sumi3);margin-left:.7em}
+.rec dl{display:grid;grid-template-columns:max-content 1fr;gap:2px 16px;align-items:baseline;margin:0;font-family:var(--gothic);font-size:.9rem;line-height:1.7}
+.rec dt{color:var(--sumi3);font-size:.8rem;white-space:nowrap}  /* 見出しと本文の1行目を基準線でそろえる（dl の align-items:baseline）。padding でずらさない */
+.rec dd{margin:0}
+/* 図 */
+figure{margin:16px 0 22px;padding:0}
+figure svg{width:100%;height:auto;color:var(--sumi);font-family:var(--gothic)}
+figcaption{font-family:var(--gothic);font-size:.85rem;color:var(--sumi2);margin-top:6px}
+.fig-n{color:var(--shu);margin-right:.5em}
+/* 囲み */
+.box{border-left:2px solid var(--shu);padding:6px 0 6px 16px;margin:14px 0 18px}
+.box ul{margin:4px 0 0;padding-left:1.2em}
+.note-ref{color:var(--shu);font-family:var(--gothic);font-size:.8rem}
+.chu p{font-family:var(--gothic);font-size:.86rem;color:var(--sumi2);line-height:1.7;margin:0 0 8px}
+.chu b{color:var(--sumi);font-weight:500}
+/* 出所は付表のあとに見出しを立てて置く（目次にも一行）〈依頼者 2026-09-19「付表の後に出所です」〉 */
+footer{margin-top:40px;font-family:var(--gothic);font-size:.8rem;color:var(--sumi3);line-height:1.7}
+details.fold>summary{cursor:pointer;font-family:var(--gothic);font-size:.88rem;color:var(--sumi2);list-style:none}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::after{content:"　▸";color:var(--shu)}
+details.fold[open]>summary::after{content:"　▾"}
+
+@media print{
+  body{background:#fff;font-size:11pt;line-height:1.85}
+  main{max-width:none;padding:0}
+  .cover{min-height:220mm;break-after:page}
+  .toc-page{break-after:page}
+  h2{font-size:16pt;margin-top:22pt}h3{font-size:12.5pt;margin-top:16pt}h4{font-size:11pt}
+  h2,h3,h4{break-after:avoid}
+  h2.kai{break-before:page}
+  .setsu.ippai{break-inside:avoid}   /* 一頁に収まる節は跨がせない（印は pdf.sh が測って付ける） */
+  p:has(+ figure){break-after:avoid}
+  table{font-size:9pt;line-height:1.45}th{font-size:8.4pt;padding:4pt 8pt 4pt 0}td{padding:4pt 8pt 4pt 0}
+  .rec dl{font-size:9.5pt;line-height:1.55}.rec{break-inside:avoid;padding:6pt 0 7pt}
+  figure{margin:10pt 0 13pt;break-inside:avoid}
+  figure svg{max-height:112mm}
+  .tbl.keep{break-inside:avoid}
+  .box{break-inside:avoid}
+  details.fold>summary::after{content:none}
+  a{color:inherit;text-decoration:none}
+}
+.kono-ie{border-left:2px solid var(--rule);padding-left:3.5mm;margin:2mm 0}
+.hitokoto{font-family:var(--mincho);font-size:1.06rem;line-height:2.0;margin:0}
+.ichimai{min-height:0;break-after:auto;padding:0 0 4mm;margin:0}
+.ichimai h1{margin:2mm 0 1mm}
+main h3{margin-top:5mm}
+figure.nijimi{margin:3mm 0 2mm;padding:6px 8px 2px}
+figure.nijimi svg{max-height:62mm;width:auto;display:block;margin:0 auto}
+@media print{.ichimai{min-height:0!important;break-after:auto!important}main h3{margin-top:4mm}p{margin:2mm 0}}
+</style>
+</head>
+<body>
+<main>
+
+<header class="ichimai">
+  <p class="kind">綴・一葉</p>
+  <h1>安東家</h1>
+  <p class="honseki">本籍　大分県豊後高田市長岩屋<span class="sub">旧　西国東郡西都甲村大字長岩屋　／　江戸時代　豊後国国東郡長岩屋村</span></p>
+  <p class="date">2026年9月22日</p>
+  <p class="mihon">見本　家の名と本籍は架空　資料と調べの中身は実在</p>
+</header>
+
+<h3>安東という名字の広がり</h3>
+<p>安東は全国に約1万6,700人おり、都道府県別に見ると、最も多いのは大分県の約4,600人です。豊後高田市には約300人がいて、本籍の長岩屋がある都甲の谷にも安東の家が続いています。県内で安東姓の分布密度が高いのは、南部の臼杵市と大野町です。本籍のある豊後高田市がこれに次ぎ、本籍から約9kmの場所にも、安東姓が集中する土地があります。</p>
+
+<figure class="nijimi">
+<svg viewBox="0 0 760 702" role="img" aria-label="大分県・福岡県・熊本県・宮崎県の安東の濃さを滲ませた地図" style="width:100%;height:auto;color:var(--sumi);font-family:var(--gothic)">
+<defs><clipPath id="njclip"><rect x="14" y="14" width="732.0" height="620.0" rx="4"/></clipPath>
+<radialGradient id="nj0"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj1"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj2"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj3"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj4"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj5"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj6"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj7"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj8"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj9"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj10"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj11"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj12"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj13"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj14"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj15"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj16"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj17"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj18"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj19"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj20"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj21"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj22"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj23"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj24"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj25"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj26"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj27"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj28"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj29"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj30"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj31"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj32"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj33"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj34"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj35"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj36"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj37"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj38"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj39"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj40"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj41"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj42"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj43"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj44"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj45"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj46"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj47"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj48"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj49"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj50"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj51"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj52"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj53"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj54"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj55"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj56"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj57"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj58"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj59"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj60"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj61"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj62"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj63"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj64"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj65"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj66"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj67"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj68"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj69"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj70"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj71"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj72"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj73"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj74"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj75"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj76"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj77"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj78"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj79"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj80"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj81"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj82"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj83"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj84"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj85"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj86"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj87"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj88"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj89"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj90"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+<radialGradient id="nj91"><stop offset="0%" stop-color="var(--shu)" stop-opacity="1"/><stop offset="55%" stop-color="var(--shu)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--shu)" stop-opacity="0"/></radialGradient>
+</defs>
+<rect x="14" y="14" width="732.0" height="620.0" fill="currentColor" fill-opacity=".03" rx="4"/>
+<g clip-path="url(#njclip)">
+<path d="M73.6 153.0L81.1 152.7L92.5 152.7L102.1 152.1L111.1 152.1L119.5 152.7L128.8 151.0L138.0 152.7L151.0 153.0L161.0 155.5L171.5 160.8L181.4 161.9L189.7 165.7L192.8 168.2L199.0 164.2L208.6 159.8L217.6 158.1L226.3 159.1L229.1 169.1L227.5 178.0L217.3 182.9L211.4 184.8L203.4 188.2L201.8 192.7L196.3 195.0L193.8 195.0L185.7 199.9L180.5 201.8L178.6 204.1L167.5 208.6L170.2 216.4L161.0 222.2L149.8 218.4L139.3 212.6L134.0 211.6L133.1 213.3L122.6 220.7L107.7 228.8L98.1 230.3L101.2 233.2L105.5 235.6L111.4 241.1L116.4 246.4L119.5 252.1L124.4 254.9L130.0 261.0L120.7 261.5L110.2 260.8L102.1 259.6L93.5 258.5L84.8 255.5L75.8 253.0L64.4 248.7L59.4 242.6L51.0 239.4L42.7 237.3L38.0 230.3L46.1 229.4L43.3 219.4L32.5 219.0L24.4 218.4L15.8 215.2L5.2 213.9L1.8 208.2L3.7 201.4L-7.5 195.4L-12.1 188.8L-8.1 182.3L0.3 182.3L3.7 187.1L13.0 190.5L10.8 185.7L9.9 182.9L13.9 177.6L20.4 171.4L20.7 166.1L12.3 166.1L5.5 162.3L-3.4 158.9L-1.9 155.5L1.2 149.8L7.7 153.4L10.2 157.2L17.6 156.4L12.0 153.0L11.7 147.7L8.9 142.3L16.7 145.5L14.5 138.7L18.2 137.7L23.2 141.5L29.4 136.2L39.0 136.8L49.2 143.6L44.5 148.9L47.6 153.2L51.0 153.0L55.1 156.6L67.5 158.1L72.7 154.0Z" fill="currentColor" fill-opacity="0.025" stroke="currentColor" stroke-opacity="0.15" stroke-width="0.6"/>
+<path d="M405.2 213.9L411.4 217.5L420.7 222.8L422.6 228.6L425.0 235.1L434.0 239.2L441.1 248.7L447.6 254.7L450.4 260.4L447.6 267.0L449.5 274.2L456.6 280.4L466.8 284.0L471.2 289.1L460.0 288.6L451.4 291.4L447.0 298.0L445.2 304.1L436.8 310.3L426.6 314.1L424.7 319.6L421.6 322.4L414.5 323.7L406.5 329.4L406.8 335.6L404.0 340.0L394.4 341.1L384.5 341.3L382.0 347.7L378.3 351.3L374.3 355.7L374.6 363.0L375.8 368.9L381.4 375.9L389.8 378.5L395.3 385.9L399.0 390.8L405.5 395.5L399.7 402.0L390.1 404.4L387.3 408.6L387.9 412.9L392.2 417.3L402.1 422.4L403.7 429.4L393.2 431.1L385.4 430.9L375.2 428.2L366.2 434.7L363.1 439.2L353.8 439.8L344.2 437.3L335.0 439.0L326.9 443.9L318.9 443.0L302.8 444.1L291.3 444.3L281.4 443.0L268.1 437.9L263.1 433.0L254.1 432.0L250.4 425.6L244.2 429.0L235.6 432.2L228.4 436.0L217.9 435.4L208.9 435.6L203.4 440.3L194.1 440.9L182.9 436.9L176.7 431.6L172.7 426.9L178.0 423.5L182.6 417.7L191.3 415.2L194.1 413.3L195.9 408.0L200.6 404.2L205.5 403.3L211.1 400.8L207.1 397.8L210.8 391.8L213.0 387.4L221.3 381.7L230.6 375.5L239.0 372.9L236.2 365.7L229.4 360.0L233.1 356.8L227.5 353.6L235.6 350.9L243.9 343.9L252.3 340.2L252.3 334.1L263.7 334.9L263.1 328.8L254.1 330.7L245.8 332.4L236.5 332.6L227.2 333.7L219.8 335.1L210.2 335.6L202.1 333.0L210.8 328.1L220.1 325.6L232.5 319.4L240.8 315.8L249.5 313.7L249.5 306.7L247.0 299.9L248.6 294.2L243.9 289.7L236.2 286.3L223.2 281.0L215.4 275.5L204.6 273.8L198.7 271.0L196.9 265.1L190.4 254.0L200.6 252.1L214.8 251.7L219.8 248.3L215.4 241.7L224.4 238.7L231.2 235.6L235.3 230.7L243.6 228.3L252.3 229.6L260.6 229.0L266.2 225.2L269.6 218.8L275.5 220.5L285.1 220.5L292.8 223.0L301.8 226.4L311.7 228.1L320.4 230.5L327.8 232.6L335.9 234.3L344.2 240.2L352.3 241.5L361.6 247.7L371.5 246.2L375.5 240.4L378.0 234.3L370.2 227.9L364.4 222.8L366.8 216.7L372.7 215.0L385.4 211.6L396.3 212.6L405.2 213.9Z" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.35" stroke-width="0.9"/>
+<path d="M192.2 349.2L187.3 344.7L187.3 341.1L187.9 337.5L192.8 336.8L195.9 333.7L201.8 336.2L200.0 339.8L200.3 345.3L195.0 348.5Z" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.35" stroke-width="0.9"/>
+<path d="M170.9 379.1L167.1 378.7L158.5 380.6L148.0 380.0L139.9 381.4L135.9 380.8L132.2 375.9L125.4 376.1L123.8 381.4L128.8 385.0L125.7 391.2L123.2 396.5L114.8 399.3L115.4 394.2L108.9 397.8L104.6 402.0L112.7 402.0L104.3 403.9L94.7 408.8L92.8 414.8L89.7 413.5L87.0 416.0L82.0 420.3L71.8 420.1L65.3 425.0L61.3 424.3L60.3 419.0L65.6 416.0L57.9 413.9L57.2 413.7L53.2 411.4L59.1 405.4L67.8 401.2L71.5 406.9L71.8 401.0L77.1 405.0L81.1 403.3L75.8 399.3L69.3 398.2L61.9 399.5L55.7 396.3L53.8 389.9L59.7 382.3L62.2 377.0L69.0 369.8L74.3 362.8L72.4 355.7L69.9 350.9L74.3 355.5L89.7 353.0L98.7 348.9L106.8 348.5L116.4 348.3L121.3 352.6L121.0 359.6L124.7 365.9L128.1 368.1L138.0 365.7L147.3 362.3L152.0 359.8L159.7 355.3L168.7 354.0L175.8 355.5L179.2 356.8L186.7 356.6L194.1 355.5L202.1 354.5L197.8 361.1L194.1 368.5L189.7 373.8L188.5 377.2L181.4 382.1L171.5 385.0L169.3 379.7Z" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.35" stroke-width="0.9"/>
+<path d="M155.1 400.5L162.5 397.8L168.7 390.8L172.7 395.7L163.1 400.3Z" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.35" stroke-width="0.9"/>
+<path d="M3.4 178.7L2.4 173.6L3.1 168.5L3.7 165.7L8.3 169.7L16.4 171.2L11.7 174.0L3.4 178.7Z" fill="currentColor" fill-opacity="0.025" stroke="currentColor" stroke-opacity="0.15" stroke-width="0.6"/>
+<path d="M-52.4 175.9L-44.9 174.2L-40.3 167.8L-39.7 174.6L-33.2 176.1L-26.7 178.9L-17.7 174.8L-8.4 176.1L-4.1 176.5L-8.1 182.3L-11.2 187.8L-7.5 195.4L3.1 201.4L2.4 206.7L4.6 213.1L13.0 215.2L21.6 217.3L29.4 219.0L39.9 217.9L45.5 224.1L42.4 228.8L37.1 233.6L46.7 238.5L55.1 240.7L60.6 245.5L69.0 248.3L77.1 254.2L87.9 257.4L95.6 258.7L104.3 259.3L113.3 261.0L124.1 261.7L123.5 267.6L112.7 271.0L104.9 274.8L97.5 277.8L89.1 281.0L104.3 283.8L105.8 284.6L115.8 286.1L123.8 284.2L133.4 281.2L141.8 279.9L149.5 279.1L159.7 280.8L168.7 287.4L176.7 296.9L176.4 302.4L177.4 308.2L169.0 315.8L169.6 321.3L160.6 323.9L152.0 326.7L143.3 326.7L138.0 332.2L127.2 336.4L119.8 335.4L117.6 339.2L115.4 336.2L109.3 332.8L101.8 329.4L101.8 322.8L104.6 320.5L114.5 317.9L123.8 312.0L125.7 305.2L118.9 300.7L112.7 296.5L103.4 297.4L94.1 296.7L83.6 297.6L74.6 301.8L65.9 303.7L57.5 303.9L47.3 302.9L46.7 308.6L40.8 312.9L34.9 317.5L29.4 323.0L21.6 328.1L11.7 328.8L9.3 334.3L1.2 339.4L-6.8 341.3L-14.9 341.9L-18.9 341.3L-9.6 338.1L-3.1 333.2L0.6 327.5L4.9 322.8L1.5 320.3L1.8 317.9L6.5 317.9L10.2 316.5L15.1 312.4L21.3 305.6L16.4 310.1L8.6 311.8L4.3 307.8L-0.3 303.3L-3.1 298.2L-9.3 292.0L-17.1 290.6L-22.9 291.4L-29.4 288.4L-36.3 283.3L-41.2 274.8L-46.5 267.4L-51.4 266.8L-54.8 263.0L-53.9 257.2L-45.5 252.3L-48.0 245.1L-43.1 241.7L-38.1 239.6L-38.1 236.0L-38.1 234.3L-32.5 233.9L-24.8 236.2L-22.6 241.5L-13.4 241.7L-20.5 248.7L-19.9 254.2L-11.8 252.8L-12.4 249.4L-3.8 250.8L4.0 255.3L3.1 259.3L4.9 264.4L3.1 269.7L-0.0 266.8L-5.0 263.8L-4.4 269.7L0.9 272.3L0.6 277.4L-4.1 281.0L3.4 281.4L12.3 285.9L16.1 285.7L19.8 285.9L23.8 279.7L29.4 278.2L37.7 281.6L48.3 283.5L54.1 287.2L63.4 286.7L56.9 282.5L50.1 277.4L46.4 272.3L39.3 266.3L39.0 259.3L45.5 254.9L41.4 248.1L33.1 244.3L23.2 239.2L14.5 240.9L7.1 245.1L7.4 238.7L-1.0 238.7L-5.0 235.1L-10.3 233.9L-12.1 233.9L-7.5 238.7L-16.8 239.6L-20.8 233.4L-17.4 231.7L-16.8 226.2L-13.7 225.6L-13.4 224.7L-5.3 223.0L-14.3 222.8L-21.7 223.7L-23.3 223.9L-23.3 218.4L-31.6 218.6L-28.5 226.2L-37.8 228.6L-44.3 226.9L-35.3 223.9L-38.1 218.4L-46.5 216.2L-46.5 214.1L-48.0 209.0L-50.2 208.8L-56.4 209.2L-60.1 206.7L-67.5 207.7L-76.5 206.9L-72.5 201.4L-71.9 196.1L-69.1 196.3L-66.6 191.0L-57.6 187.4L-67.2 187.8L-74.0 182.1L-70.9 180.1L-72.2 172.7L-63.2 171.9L-61.0 174.4L-54.8 175.9Z" fill="currentColor" fill-opacity="0.025" stroke="currentColor" stroke-opacity="0.15" stroke-width="0.6"/>
+<path d="M269.6 57.6L277.7 53.4L287.0 54.2L294.7 51.9L296.9 54.4L300.9 55.9L314.8 56.8L313.6 61.0L304.0 63.6L304.0 64.6L290.7 67.0L304.3 65.3L308.9 67.2L315.4 61.0L322.3 55.9L324.4 58.3L324.4 59.5L333.4 59.7L336.2 61.2L337.7 63.1L346.4 62.1L354.1 53.6L359.1 49.6L368.4 48.5L377.1 48.3L373.3 53.8L375.2 57.4L367.2 61.7L370.9 67.2L366.8 67.6L369.0 72.1L361.0 75.0L364.4 80.3L370.9 82.9L365.6 86.3L372.1 86.5L374.6 87.6L373.3 94.8L378.9 101.1L385.1 106.7L391.6 113.0L396.9 117.7L404.3 121.7L410.2 119.8L420.7 121.7L426.3 123.9L424.7 130.2L429.1 136.8L422.9 143.2L412.0 145.3L401.2 145.5L387.9 144.9L380.2 142.8L371.8 144.0L363.1 145.5L353.8 149.6L348.9 153.8L339.9 157.4L336.8 164.4L334.0 172.5L328.1 175.7L321.9 181.2L328.1 186.9L325.4 193.7L326.3 197.1L316.7 199.0L321.9 203.3L323.2 205.4L326.6 210.7L336.2 213.1L333.7 220.3L325.4 229.6L317.0 230.3L306.8 226.6L298.4 225.6L290.1 222.0L280.5 220.7L274.6 217.7L267.8 221.8L265.6 228.1L257.6 228.8L248.0 228.6L239.6 228.8L236.5 234.3L228.4 235.6L221.9 239.0L215.4 243.2L221.0 250.2L211.7 252.1L198.1 252.1L184.2 252.8L191.9 250.2L191.9 246.8L190.7 237.5L181.4 232.6L176.7 227.1L171.5 223.0L168.7 214.1L170.9 208.4L176.7 203.1L182.6 197.6L190.7 195.9L196.3 195.0L201.8 192.7L202.4 188.6L212.7 185.2L215.4 183.5L224.1 180.6L229.1 169.1L227.2 160.2L217.6 158.1L209.3 159.8L200.6 163.8L192.8 168.2L189.7 165.7L182.3 162.3L174.3 160.6L161.0 155.5L151.0 153.0L141.8 151.5L131.9 151.5L121.3 151.7L112.0 153.0L104.3 153.0L94.7 151.3L84.5 153.2L75.5 153.4L75.2 147.4L85.1 146.0L95.3 144.5L102.8 142.1L109.3 137.5L107.7 134.9L99.3 135.5L98.4 130.9L90.1 130.7L99.3 127.5L111.1 123.7L113.9 119.0L122.6 116.9L130.3 112.8L132.2 117.3L138.0 123.0L145.8 125.4L148.0 129.4L155.4 128.8L161.3 125.6L169.9 126.4L178.3 124.3L182.0 123.2L185.4 121.5L187.0 119.2L191.6 116.6L190.7 113.3L193.8 110.1L190.7 107.1L176.7 111.3L166.5 114.3L158.5 112.2L150.7 109.0L158.5 110.5L175.5 110.5L187.9 105.2L199.7 98.8L206.5 90.1L200.9 86.1L199.7 80.3L207.7 79.1L209.9 72.1L221.3 70.1L229.4 64.0L237.7 65.9L254.1 65.5L263.4 63.1L265.0 59.7Z" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.35" stroke-width="0.9"/>
+<path d="M539.6 109.0L549.2 109.4L555.1 106.9L561.6 109.4L566.2 107.9L572.7 112.6L579.2 114.1L588.2 122.6L595.0 127.5L599.4 135.3L597.8 143.2L598.1 149.1L595.6 154.7L589.1 163.6L584.5 166.3L575.5 165.7L575.2 163.2L565.6 163.6L570.6 169.3L563.7 173.3L555.7 174.0L551.4 177.6L541.8 178.4L534.0 174.6L525.0 178.9L526.3 186.3L528.1 194.2L540.2 198.6L549.8 199.9L559.4 199.0L566.5 195.0L577.4 198.0L581.4 195.6L589.1 194.6L598.4 198.4L608.3 199.3L609.9 201.6L627.8 200.1L635.9 198.4L641.1 197.3L650.7 196.7L643.6 200.9L641.1 206.3L634.6 212.0L627.5 216.7L622.9 222.8L623.2 226.6L630.9 227.9L639.9 224.9L648.9 224.9L648.9 228.1L639.9 232.2L639.3 235.1L648.9 236.6L652.9 238.1L659.7 236.0L662.5 232.4L663.8 238.3L674.3 238.7L676.8 233.4L679.2 235.6L686.0 239.8L677.1 241.3L665.6 242.4L657.2 243.2L652.9 249.4L647.7 253.6L652.3 257.2L660.0 260.6L667.8 264.2L672.1 260.8L676.8 265.1L681.7 261.5L681.7 267.2L690.1 265.7L694.7 263.8L702.5 263.8L703.1 267.0L694.4 268.3L685.4 269.1L678.6 271.0L675.8 273.6L679.9 274.4L681.1 278.5L672.7 281.0L666.5 284.0L669.3 291.2L674.6 289.9L679.9 287.2L677.1 291.6L673.0 296.1L666.5 293.7L659.1 298.2L655.7 298.2L648.3 297.8L644.9 297.1L643.3 297.1L643.3 302.7L645.2 306.7L636.5 308.6L633.4 302.7L637.1 294.2L631.6 291.0L623.5 289.3L614.5 288.2L604.6 287.6L598.4 291.0L592.5 297.8L586.7 300.7L572.7 301.4L559.4 300.7L547.3 304.8L535.9 303.3L528.5 298.6L526.3 293.1L518.2 287.4L506.8 289.1L499.7 292.5L490.4 293.1L482.3 294.4L478.3 289.3L469.0 285.0L459.1 281.2L450.1 275.7L448.3 267.8L447.6 262.7L448.6 256.6L443.3 250.8L437.4 241.1L425.0 235.1L422.3 229.2L420.7 222.8L412.4 218.8L406.8 214.5L396.3 212.6L386.3 211.6L375.2 215.2L367.5 215.4L365.3 221.5L369.9 227.9L376.4 232.8L376.4 239.4L372.1 244.7L363.7 247.7L355.4 241.9L347.3 241.5L337.1 236.4L328.1 232.6L323.2 229.8L330.9 221.8L336.2 213.1L326.6 210.7L321.3 206.5L322.6 203.3L317.0 200.3L326.3 197.1L326.3 194.4L328.1 186.9L324.7 181.2L325.0 177.4L331.5 172.5L336.2 166.8L339.3 159.8L348.0 155.7L352.6 150.2L363.1 145.5L371.8 144.0L380.2 142.8L387.9 144.9L398.1 145.3L408.9 146.2L421.6 144.9L423.2 141.3L429.7 133.4L425.4 126.8L430.0 121.7L438.4 124.5L447.0 123.0L454.8 128.1L464.1 129.4L474.3 129.4L486.0 130.2L495.6 130.9L502.1 128.1L513.9 121.3L519.5 118.3L525.0 115.8L527.8 109.4L532.8 107.5Z" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.35" stroke-width="0.9"/>
+<path d="M584.8 -104.2L586.4 -98.7L586.0 -92.9L592.9 -90.0L593.8 -84.2L591.3 -79.1L587.9 -73.6L578.6 -68.1L582.3 -61.3L586.4 -59.0L585.7 -53.6L596.9 -51.5L604.9 -53.0L613.9 -51.9L614.8 -46.2L607.7 -39.4L612.0 -32.4L618.2 -26.9L628.1 -23.9L637.7 -24.3L644.9 -28.0L653.5 -29.7L662.5 -28.6L668.7 -27.7L675.2 -33.9L682.9 -37.1L682.3 -42.8L678.6 -48.8L685.7 -55.8L695.3 -59.2L705.5 -53.4L703.1 -46.2L704.0 -40.9L702.1 -35.2L711.7 -32.6L718.6 -30.5L718.6 -25.2L723.8 -20.1L725.7 -14.4L729.4 -8.2L737.4 -8.2L740.5 -3.5L749.2 -3.7L755.1 -1.4L756.6 3.9L752.9 13.5L743.0 13.9L745.5 21.9L746.7 29.4L748.0 35.7L743.3 42.3L735.3 48.5L724.1 49.8L718.6 52.7L721.3 60.6L722.6 65.9L729.1 69.9L725.4 75.0L717.0 76.1L717.3 68.4L708.3 64.0L703.1 60.6L698.7 56.6L689.1 60.8L678.9 57.4L671.2 56.8L664.4 51.0L655.1 47.2L646.7 44.9L639.3 40.2L631.2 38.5L620.4 42.8L619.2 45.7L610.5 45.1L611.1 43.8L616.1 39.8L624.4 35.3L617.9 31.9L617.0 30.2L613.3 29.0L602.4 30.7L605.5 26.6L596.9 27.0L589.4 28.5L580.2 29.8L570.9 32.4L561.3 35.1L556.9 31.7L552.3 35.1L540.8 40.2L532.8 38.7L530.0 36.6L521.6 34.5L515.5 35.1L513.9 39.8L514.2 41.7L506.5 44.0L504.3 39.8L497.5 39.8L492.9 40.8L500.0 36.0L494.7 31.7L489.4 32.8L489.4 35.5L483.3 41.1L479.5 47.2L471.8 50.4L462.8 52.7L453.5 56.8L443.0 55.9L443.3 51.5L435.9 52.3L421.0 50.8L425.0 45.7L420.7 43.4L412.4 39.8L408.9 39.8L399.7 32.6L385.7 31.5L379.5 30.7L375.2 37.9L369.6 42.3L357.6 47.9L348.3 51.7L347.6 57.4L340.2 57.8L333.7 52.5L336.8 51.7L345.2 50.8L345.2 44.9L344.9 37.9L344.2 31.3L339.6 25.8L333.7 21.9L328.8 16.4L333.1 11.5L341.5 9.2L348.0 4.3L349.2 -2.9L346.7 -7.4L340.8 -13.3L332.8 -19.0L335.6 -23.7L337.7 -29.9L340.2 -36.4L347.6 -33.5L357.9 -35.2L369.3 -38.6L378.3 -38.6L380.5 -41.8L371.8 -44.3L362.8 -45.4L357.2 -42.2L351.7 -45.4L359.1 -50.5L366.2 -51.9L372.4 -47.7L382.0 -47.1L390.1 -48.8L397.5 -48.8L405.5 -46.4L413.0 -45.8L417.9 -39.6L426.9 -39.6L435.3 -40.7L440.5 -43.0L449.8 -41.1L457.2 -41.5L465.6 -40.9L472.4 -45.6L480.5 -46.9L488.2 -48.8L498.4 -50.0L494.4 -54.5L498.4 -55.6L505.9 -58.7L513.9 -62.8L511.1 -67.2L515.5 -74.0L523.5 -72.3L530.6 -76.8L538.7 -80.4L541.5 -85.5L546.1 -91.4L553.8 -91.2L553.5 -94.0L557.9 -100.1L565.9 -100.6L568.7 -97.0L576.8 -99.1L582.6 -102.9Z" fill="currentColor" fill-opacity="0.025" stroke="currentColor" stroke-opacity="0.15" stroke-width="0.6"/>
+<path d="M593.5 44.9L586.4 39.6L589.8 33.4L591.3 38.5L597.8 44.0Z" fill="currentColor" fill-opacity="0.025" stroke="currentColor" stroke-opacity="0.15" stroke-width="0.6"/>
+<path d="M625.1 55.1L621.0 50.6L625.1 52.1L632.8 50.8L635.9 45.3L639.3 45.1L637.7 50.8L629.7 54.4Z" fill="currentColor" fill-opacity="0.025" stroke="currentColor" stroke-opacity="0.15" stroke-width="0.6"/>
+<path d="M744.9 70.8L739.9 64.6L735.3 57.4L737.4 50.8L747.0 47.9L756.3 48.3L766.8 50.4L773.7 56.3L779.9 61.0L788.8 60.6L793.8 56.3L805.2 55.5L809.3 50.6L817.9 52.7L820.1 54.6L811.1 56.1L803.4 57.8L794.1 61.2L794.7 68.0L787.0 69.1L781.7 68.0L780.8 63.4L772.4 62.3L763.8 64.2L761.0 66.5L751.4 66.7L744.9 70.8Z" fill="currentColor" fill-opacity="0.025" stroke="currentColor" stroke-opacity="0.15" stroke-width="0.6"/>
+<path d="M695.9 86.1L696.6 83.3L703.7 77.6L701.8 72.1L710.2 73.5L713.6 77.6L704.0 79.9L698.4 85.0Z" fill="currentColor" fill-opacity="0.025" stroke="currentColor" stroke-opacity="0.15" stroke-width="0.6"/>
+<path d="M760.0 90.1L751.7 86.7L743.6 84.6L734.3 83.9L742.4 79.9L750.4 81.4L759.7 85.2L760.0 90.1Z" fill="currentColor" fill-opacity="0.025" stroke="currentColor" stroke-opacity="0.15" stroke-width="0.6"/>
+<path d="M845.2 117.5L864.7 112.8L873.4 108.8L882.3 104.8L889.5 97.8L895.3 92.9L896.6 86.7L893.2 81.4L894.1 75.0L899.4 68.7L898.7 66.7L900.3 60.2L912.1 60.4L916.4 54.0L918.9 45.7L918.2 40.4L928.2 38.3L935.6 34.7L943.3 31.1L955.4 27.9L965.0 26.6L968.1 19.4L961.0 16.4L961.0 14.9L969.6 13.9L975.5 13.9L984.2 17.9L991.0 25.1L997.8 29.4L1004.9 37.0L1010.8 44.0L1016.4 49.3L1021.3 52.9L1026.9 56.3L1031.6 55.9L1042.1 53.6L1062.8 50.6L1067.2 45.7L1071.5 48.3L1077.4 43.2L1085.1 44.0L1092.6 42.8L1100.6 44.9L1110.5 43.4L1123.2 43.4L1134.0 45.3L1144.3 46.8L1152.6 45.5L1161.0 41.5L1163.8 38.9L1171.5 33.2L1179.5 33.4L1188.2 34.9L1196.6 34.9L1202.5 39.8L1200.9 46.8L1204.6 51.9L1203.7 57.4L1197.2 64.4L1184.8 67.6L1175.2 65.9L1167.2 68.2L1158.5 66.1L1152.9 71.6L1147.4 75.2L1137.1 75.7L1126.6 75.7L1118.9 74.4L1111.4 77.6L1100.3 75.7L1086.7 79.5L1076.1 76.3L1069.9 84.2L1058.8 87.1L1050.1 84.2L1046.7 89.9L1039.6 95.8L1035.0 102.8L1027.5 107.9L1023.5 113.3L1014.2 114.1L1011.4 121.1L1009.9 125.8L1004.6 130.7L1009.9 137.5L999.4 145.1L989.5 151.7L976.8 153.8L964.4 153.4L955.4 152.3L943.0 151.0L935.0 152.3L936.2 158.1L938.4 164.9L944.3 168.2L947.3 174.8L957.9 178.7L959.4 184.6L945.5 190.8L935.9 192.9L927.5 194.6L921.7 200.1L919.8 206.7L913.0 209.9L909.0 214.1L900.9 219.8L891.9 222.8L881.1 216.7L872.4 214.3L874.6 219.6L879.2 226.2L887.0 232.0L886.7 238.7L890.7 245.8L892.2 252.1L893.5 259.6L887.3 265.1L883.6 268.7L872.4 269.7L864.4 268.9L865.9 264.9L856.3 264.0L856.9 267.6L848.9 266.6L843.3 263.6L843.0 266.8L843.3 269.7L834.7 272.9L827.8 270.4L824.7 265.1L832.5 265.5L831.9 261.3L830.0 258.7L834.0 258.3L842.7 260.2L851.1 261.9L843.0 258.7L835.6 254.2L832.5 250.4L830.6 243.4L822.0 242.4L817.3 243.6L809.9 240.4L808.0 247.0L800.6 248.5L805.5 241.9L809.6 239.4L817.9 239.0L825.4 239.8L829.1 237.7L826.9 237.9L829.4 232.0L823.2 226.9L823.2 226.0L830.6 226.4L835.6 224.1L827.5 224.1L819.2 224.1L812.1 219.6L818.2 216.7L819.2 213.7L811.1 208.4L810.2 208.0L818.9 210.3L822.3 210.7L827.2 214.8L833.1 217.1L835.9 216.7L838.1 213.9L835.3 209.4L843.0 207.3L850.4 205.6L847.7 202.9L847.7 198.2L843.3 196.9L834.7 195.4L827.8 197.1L830.0 191.4L839.0 188.0L839.6 185.0L833.1 183.7L825.4 185.0L817.0 186.7L808.6 187.8L800.0 185.0L797.2 181.2L805.9 179.3L809.3 172.3L799.4 175.9L797.8 170.6L802.1 164.9L803.7 161.5L803.7 159.1L803.1 158.7L809.0 155.3L804.6 152.3L797.8 155.1L788.8 149.4L785.4 151.9L779.2 155.5L771.5 154.2L762.8 158.7L751.1 162.5L737.4 165.3L728.5 169.9L722.6 174.0L712.4 175.9L717.9 170.6L706.5 171.9L699.0 174.0L692.9 178.0L684.5 179.7L692.5 175.5L704.6 170.4L713.6 166.1L719.8 166.1L727.8 165.9L730.3 162.3L731.6 161.5L737.4 157.8L742.1 155.9L750.7 158.1L754.5 155.3L762.5 155.3L764.7 151.5L774.9 149.6L782.3 146.6L789.8 144.5L797.5 141.5L805.2 137.7L813.0 134.7L821.0 128.1L830.0 121.7L838.7 119.6Z" fill="currentColor" fill-opacity="0.025" stroke="currentColor" stroke-opacity="0.15" stroke-width="0.6"/>
+<path d="M127.8 412.0L127.2 406.5L134.0 403.5L143.9 402.2L140.2 406.7L136.5 411.4L128.8 410.7Z" fill="currentColor" fill-opacity="0.025" stroke="currentColor" stroke-opacity="0.15" stroke-width="0.6"/>
+<path d="M110.5 446.0L99.3 440.0L97.5 433.5L94.1 428.4L93.2 425.2L93.8 421.8L98.7 420.1L107.1 421.6L110.2 417.1L115.4 416.5L120.4 423.1L118.5 430.3L126.3 432.0L117.0 436.0L114.2 441.7Z" fill="currentColor" fill-opacity="0.025" stroke="currentColor" stroke-opacity="0.15" stroke-width="0.6"/>
+<path d="M244.5 425.6L252.0 428.2L258.8 432.4L264.1 435.8L272.4 439.6L284.5 443.7L279.2 450.4L289.1 454.9L296.9 459.2L303.1 466.6L308.3 473.0L314.2 477.6L326.9 478.5L334.6 482.1L339.3 489.1L338.0 491.4L336.5 496.7L334.3 501.0L336.8 506.3L347.3 508.0L360.6 511.6L367.2 515.0L368.1 518.2L376.1 521.6L376.4 527.7L378.9 533.5L382.6 537.3L390.1 540.9L399.0 539.2L408.3 543.7L417.9 543.0L426.3 543.9L429.4 549.8L433.1 556.4L432.2 563.0L425.7 570.2L421.6 577.6L414.2 579.6L404.9 576.4L394.1 580.8L382.0 588.3L375.5 599.9L389.8 604.8L399.4 606.3L402.8 609.7L393.8 615.6L401.8 618.6L411.1 616.9L405.2 621.6L396.3 625.6L386.0 629.9L376.1 629.0L373.3 634.5L366.2 639.2L364.4 645.0L352.9 650.3L344.9 653.4L331.5 657.3L323.8 658.5L315.8 659.0L306.8 660.0L299.7 663.4L291.6 666.2L282.3 669.4L274.0 671.9L268.7 675.5L267.1 675.1L270.6 669.6L270.9 664.1L266.8 660.2L277.4 656.4L287.9 652.6L296.6 641.3L294.7 632.8L300.6 626.9L305.9 620.3L306.2 612.7L309.9 605.9L302.4 598.7L299.0 592.3L292.8 585.5L280.2 580.2L276.7 571.7L277.7 565.1L277.4 559.6L269.9 560.9L258.5 561.5L250.7 556.8L244.5 552.2L254.1 546.2L262.8 545.2L271.2 543.9L278.6 546.9L283.2 552.8L284.2 558.1L286.0 559.2L298.1 558.1L304.6 549.8L309.3 543.2L316.1 538.1L310.2 531.4L303.1 528.2L295.3 527.5L287.6 523.9L276.7 522.6L265.6 522.9L255.7 526.0L250.1 532.4L252.9 537.9L247.6 543.2L238.7 549.4L237.7 555.8L231.5 561.1L227.5 567.0L221.9 570.6L225.7 574.7L221.3 576.2L221.0 578.9L222.6 585.3L225.0 591.0L231.2 593.4L234.6 605.9L242.1 612.9L252.6 617.8L265.3 619.9L263.1 626.3L259.4 631.6L259.7 633.7L255.4 639.0L245.5 639.4L238.7 641.3L229.1 641.8L218.2 639.6L218.9 632.2L210.5 626.5L200.3 624.1L192.8 625.0L185.4 623.9L176.7 624.1L169.0 623.9L161.6 623.3L152.6 622.4L148.6 623.7L139.9 623.1L132.2 623.7L127.8 622.0L127.8 619.3L127.5 615.9L123.2 614.4L131.2 612.7L122.6 610.3L123.5 606.5L122.6 602.1L115.4 599.7L106.5 593.8L98.7 588.9L96.6 587.6L105.2 588.3L113.9 588.3L120.4 586.3L126.9 591.7L138.0 589.1L145.8 587.0L158.2 573.4L164.4 559.6L164.1 546.4L159.1 537.7L149.2 530.1L142.7 527.3L138.0 522.0L129.4 518.2L120.4 518.8L114.8 511.0L115.1 504.8L120.4 498.4L123.5 492.7L128.8 487.4L129.4 480.4L126.3 471.7L119.2 466.2L117.0 463.4L121.3 458.7L124.7 450.4L114.8 448.5L115.8 442.8L123.8 439.6L133.4 437.9L143.0 439.8L155.1 442.2L167.1 437.7L172.4 430.7L181.1 434.1L186.7 439.6L196.9 440.9L205.5 439.8L213.9 436.6L222.3 436.4L229.1 433.5L241.5 432.2L245.2 426.0Z" fill="currentColor" fill-opacity="0.025" stroke="currentColor" stroke-opacity="0.15" stroke-width="0.6"/>
+<path d="M21.6 507.4L17.0 503.1L13.6 501.2L17.0 496.5L13.0 492.9L10.5 499.5L5.2 496.1L15.1 489.9L26.6 496.1L33.7 495.9L36.5 493.3L40.2 497.0L39.9 501.8L31.2 502.9L21.9 507.4Z" fill="currentColor" fill-opacity="0.025" stroke="currentColor" stroke-opacity="0.15" stroke-width="0.6"/>
+<path d="M528.5 300.7L537.4 303.9L551.1 302.9L563.1 300.7L578.0 302.2L590.4 301.2L596.9 295.2L598.7 289.1L606.5 287.4L618.2 290.1L626.3 288.9L635.9 290.3L634.3 296.9L634.0 304.6L638.1 308.0L642.4 309.2L638.7 312.9L633.7 315.6L629.1 316.7L624.1 318.4L616.7 321.1L612.0 322.0L608.3 327.7L607.4 329.0L607.1 334.3L600.9 339.4L585.7 344.5L582.9 352.8L586.4 356.8L590.7 358.3L594.7 361.3L586.7 364.2L581.1 362.5L575.2 365.5L572.4 371.2L575.8 372.5L581.1 373.8L580.2 375.7L580.5 376.6L572.4 377.6L566.8 385.5L565.3 391.4L558.2 395.9L551.7 404.2L548.3 414.6L542.1 426.9L538.1 437.1L531.9 446.6L526.3 457.9L522.9 464.5L515.8 481.2L514.2 486.3L513.9 492.1L511.7 503.7L517.3 508.8L518.5 515.2L515.5 520.9L513.0 526.9L516.1 531.8L512.0 535.6L511.1 541.8L505.2 547.5L499.0 554.7L494.1 557.0L490.7 561.9L490.4 567.0L488.5 570.6L486.3 576.4L485.7 583.4L480.8 588.7L474.3 596.3L475.5 600.8L468.1 595.9L458.8 596.3L447.6 595.7L444.2 589.5L441.8 587.4L434.3 581.0L426.0 581.9L421.6 577.6L423.5 571.3L433.1 564.9L431.9 557.9L432.2 551.5L429.7 545.4L419.2 542.6L408.9 543.7L399.0 539.2L390.1 540.9L382.6 537.3L378.9 533.5L376.4 527.7L376.1 521.6L370.2 519.0L365.6 515.4L362.2 511.0L348.3 509.9L340.2 507.4L333.1 501.8L336.5 496.7L338.0 491.4L339.3 489.1L335.9 483.8L326.9 478.5L314.2 477.6L308.3 473.0L303.1 466.6L298.4 460.2L289.1 454.9L279.2 450.4L283.9 444.7L292.8 443.2L312.4 444.3L321.3 442.4L330.6 440.7L339.0 438.1L348.6 439.2L356.3 440.7L362.5 436.6L369.3 432.0L376.7 429.0L386.3 430.5L397.8 432.4L402.4 428.2L398.4 421.4L393.2 414.8L384.2 412.0L386.3 405.9L395.3 405.4L402.1 399.1L403.7 393.5L394.1 389.3L392.8 382.5L386.7 378.5L378.6 372.9L376.1 365.9L373.0 360.4L378.9 354.5L377.1 348.5L382.6 345.1L388.5 340.5L399.4 342.2L406.2 339.4L407.1 333.0L410.2 326.2L417.6 320.9L425.4 322.2L425.7 317.1L431.2 311.2L442.7 307.1L446.7 301.4L447.6 295.0L453.2 289.7L465.0 289.1L473.0 288.2L479.2 291.8L486.3 293.7L495.3 292.5L503.4 291.6L511.7 289.1L521.6 290.8L531.2 295.2Z" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.35" stroke-width="0.9"/>
+<circle cx="247.9" cy="357.3" r="17.0" fill="url(#nj90)" opacity="0.10"/>
+<circle cx="199.7" cy="246.3" r="17.0" fill="url(#nj91)" opacity="0.10"/>
+<circle cx="280.8" cy="294.5" r="27.4" fill="url(#nj81)" opacity="0.12"/>
+<circle cx="219.0" cy="185.0" r="20.8" fill="url(#nj82)" opacity="0.10"/>
+<circle cx="312.7" cy="60.5" r="18.6" fill="url(#nj83)" opacity="0.10"/>
+<circle cx="275.6" cy="115.5" r="18.6" fill="url(#nj84)" opacity="0.10"/>
+<circle cx="195.7" cy="255.6" r="17.0" fill="url(#nj85)" opacity="0.10"/>
+<circle cx="235.8" cy="266.5" r="17.0" fill="url(#nj86)" opacity="0.10"/>
+<circle cx="233.6" cy="168.6" r="17.0" fill="url(#nj87)" opacity="0.10"/>
+<circle cx="122.1" cy="134.4" r="17.0" fill="url(#nj88)" opacity="0.10"/>
+<circle cx="442.0" cy="578.8" r="17.0" fill="url(#nj89)" opacity="0.10"/>
+<circle cx="501.3" cy="484.7" r="24.0" fill="url(#nj64)" opacity="0.20"/>
+<circle cx="287.5" cy="94.8" r="19.8" fill="url(#nj65)" opacity="0.14"/>
+<circle cx="207.2" cy="139.6" r="19.8" fill="url(#nj66)" opacity="0.14"/>
+<circle cx="223.8" cy="143.9" r="18.6" fill="url(#nj67)" opacity="0.11"/>
+<circle cx="312.9" cy="69.4" r="18.6" fill="url(#nj68)" opacity="0.11"/>
+<circle cx="176.1" cy="130.5" r="18.6" fill="url(#nj69)" opacity="0.11"/>
+<circle cx="228.9" cy="81.7" r="18.6" fill="url(#nj70)" opacity="0.11"/>
+<circle cx="207.1" cy="98.0" r="18.6" fill="url(#nj71)" opacity="0.11"/>
+<circle cx="313.3" cy="257.1" r="17.0" fill="url(#nj72)" opacity="0.10"/>
+<circle cx="201.8" cy="267.7" r="17.0" fill="url(#nj73)" opacity="0.10"/>
+<circle cx="292.1" cy="276.3" r="17.0" fill="url(#nj74)" opacity="0.10"/>
+<circle cx="214.2" cy="401.6" r="17.0" fill="url(#nj75)" opacity="0.10"/>
+<circle cx="224.5" cy="120.3" r="17.0" fill="url(#nj76)" opacity="0.10"/>
+<circle cx="276.0" cy="84.4" r="17.0" fill="url(#nj77)" opacity="0.10"/>
+<circle cx="471.3" cy="467.1" r="17.0" fill="url(#nj78)" opacity="0.10"/>
+<circle cx="571.3" cy="365.1" r="17.0" fill="url(#nj79)" opacity="0.10"/>
+<circle cx="365.1" cy="88.0" r="17.0" fill="url(#nj80)" opacity="0.10"/>
+<circle cx="298.2" cy="68.8" r="25.2" fill="url(#nj45)" opacity="0.26"/>
+<circle cx="577.1" cy="341.5" r="24.0" fill="url(#nj46)" opacity="0.25"/>
+<circle cx="193.6" cy="133.5" r="23.3" fill="url(#nj47)" opacity="0.25"/>
+<circle cx="332.0" cy="65.7" r="23.3" fill="url(#nj48)" opacity="0.25"/>
+<circle cx="358.7" cy="52.9" r="23.3" fill="url(#nj49)" opacity="0.25"/>
+<circle cx="169.5" cy="129.2" r="21.7" fill="url(#nj50)" opacity="0.23"/>
+<circle cx="189.9" cy="127.3" r="21.7" fill="url(#nj51)" opacity="0.23"/>
+<circle cx="429.5" cy="125.7" r="20.8" fill="url(#nj52)" opacity="0.22"/>
+<circle cx="318.5" cy="63.0" r="19.8" fill="url(#nj53)" opacity="0.20"/>
+<circle cx="411.4" cy="122.9" r="18.6" fill="url(#nj54)" opacity="0.17"/>
+<circle cx="213.7" cy="89.8" r="18.6" fill="url(#nj55)" opacity="0.17"/>
+<circle cx="250.9" cy="71.5" r="18.6" fill="url(#nj56)" opacity="0.17"/>
+<circle cx="536.0" cy="174.3" r="18.6" fill="url(#nj57)" opacity="0.17"/>
+<circle cx="265.8" cy="343.9" r="17.0" fill="url(#nj58)" opacity="0.11"/>
+<circle cx="482.7" cy="193.3" r="17.0" fill="url(#nj59)" opacity="0.11"/>
+<circle cx="642.5" cy="200.3" r="17.0" fill="url(#nj60)" opacity="0.11"/>
+<circle cx="267.1" cy="62.9" r="17.0" fill="url(#nj61)" opacity="0.11"/>
+<circle cx="245.8" cy="155.7" r="17.0" fill="url(#nj62)" opacity="0.11"/>
+<circle cx="242.5" cy="179.3" r="17.0" fill="url(#nj63)" opacity="0.11"/>
+<circle cx="190.8" cy="121.6" r="25.2" fill="url(#nj37)" opacity="0.30"/>
+<circle cx="161.6" cy="129.0" r="23.3" fill="url(#nj38)" opacity="0.29"/>
+<circle cx="183.2" cy="127.6" r="21.7" fill="url(#nj39)" opacity="0.27"/>
+<circle cx="209.8" cy="138.9" r="20.8" fill="url(#nj40)" opacity="0.26"/>
+<circle cx="210.4" cy="123.1" r="18.6" fill="url(#nj41)" opacity="0.21"/>
+<circle cx="268.0" cy="99.1" r="18.6" fill="url(#nj42)" opacity="0.21"/>
+<circle cx="500.8" cy="216.7" r="17.0" fill="url(#nj43)" opacity="0.15"/>
+<circle cx="302.8" cy="114.1" r="17.0" fill="url(#nj44)" opacity="0.15"/>
+<circle cx="311.1" cy="117.1" r="22.5" fill="url(#nj33)" opacity="0.31"/>
+<circle cx="275.6" cy="249.0" r="20.8" fill="url(#nj34)" opacity="0.29"/>
+<circle cx="219.8" cy="132.2" r="19.8" fill="url(#nj35)" opacity="0.27"/>
+<circle cx="268.5" cy="72.7" r="18.6" fill="url(#nj36)" opacity="0.24"/>
+<circle cx="335.5" cy="73.0" r="28.4" fill="url(#nj25)" opacity="0.37"/>
+<circle cx="365.9" cy="98.0" r="24.6" fill="url(#nj26)" opacity="0.35"/>
+<circle cx="224.4" cy="149.3" r="24.0" fill="url(#nj27)" opacity="0.35"/>
+<circle cx="649.8" cy="261.3" r="23.3" fill="url(#nj28)" opacity="0.34"/>
+<circle cx="637.8" cy="237.4" r="20.8" fill="url(#nj29)" opacity="0.31"/>
+<circle cx="276.7" cy="71.3" r="19.8" fill="url(#nj30)" opacity="0.29"/>
+<circle cx="323.9" cy="110.9" r="18.6" fill="url(#nj31)" opacity="0.26"/>
+<circle cx="307.5" cy="106.2" r="17.0" fill="url(#nj32)" opacity="0.20"/>
+<circle cx="479.6" cy="139.7" r="24.6" fill="url(#nj22)" opacity="0.37"/>
+<circle cx="313.9" cy="125.4" r="19.8" fill="url(#nj23)" opacity="0.31"/>
+<circle cx="281.9" cy="133.2" r="17.0" fill="url(#nj24)" opacity="0.22"/>
+<circle cx="480.3" cy="159.7" r="18.6" fill="url(#nj18)" opacity="0.30"/>
+<circle cx="272.9" cy="347.1" r="17.0" fill="url(#nj19)" opacity="0.24"/>
+<circle cx="531.4" cy="112.2" r="17.0" fill="url(#nj20)" opacity="0.24"/>
+<circle cx="568.0" cy="237.4" r="17.0" fill="url(#nj21)" opacity="0.24"/>
+<circle cx="508.1" cy="247.2" r="17.0" fill="url(#nj17)" opacity="0.26"/>
+<circle cx="388.5" cy="113.4" r="19.8" fill="url(#nj16)" opacity="0.36"/>
+<circle cx="494.5" cy="258.4" r="22.5" fill="url(#nj15)" opacity="0.43"/>
+<circle cx="199.9" cy="100.9" r="20.8" fill="url(#nj14)" opacity="0.42"/>
+<circle cx="574.4" cy="282.9" r="18.6" fill="url(#nj13)" opacity="0.41"/>
+<circle cx="523.2" cy="192.3" r="39.0" fill="url(#nj11)" opacity="0.56"/>
+<circle cx="585.4" cy="243.7" r="21.7" fill="url(#nj12)" opacity="0.48"/>
+<circle cx="530.1" cy="259.7" r="18.6" fill="url(#nj10)" opacity="0.45"/>
+<circle cx="552.3" cy="257.4" r="26.4" fill="url(#nj8)" opacity="0.56"/>
+<circle cx="490.1" cy="237.5" r="18.6" fill="url(#nj9)" opacity="0.46"/>
+<circle cx="543.7" cy="147.5" r="18.6" fill="url(#nj7)" opacity="0.49"/>
+<circle cx="555.9" cy="244.2" r="19.8" fill="url(#nj6)" opacity="0.56"/>
+<circle cx="530.1" cy="210.7" r="27.9" fill="url(#nj5)" opacity="0.65"/>
+<circle cx="535.2" cy="218.2" r="24.6" fill="url(#nj4)" opacity="0.67"/>
+<circle cx="559.9" cy="201.9" r="99.2" fill="url(#nj3)" opacity="0.76"/>
+<circle cx="509.6" cy="134.7" r="42.7" fill="url(#nj2)" opacity="0.81"/>
+<circle cx="526.5" cy="244.6" r="35.4" fill="url(#nj1)" opacity="0.87"/>
+<circle cx="620.3" cy="226.0" r="65.9" fill="url(#nj0)" opacity="0.90"/>
+<circle cx="620.3" cy="226.0" r="2.6" fill="currentColor" fill-opacity=".8"/>
+<text x="620.3" y="217.0" font-size="11.5" font-weight="700" text-anchor="middle" fill="currentColor" paint-order="stroke" stroke="var(--paper)" stroke-width="3" stroke-linejoin="round">臼杵市 1.98%</text>
+<circle cx="526.5" cy="244.6" r="2.6" fill="currentColor" fill-opacity=".8"/>
+<text x="526.5" y="235.6" font-size="11.5" font-weight="700" text-anchor="middle" fill="currentColor" paint-order="stroke" stroke="var(--paper)" stroke-width="3" stroke-linejoin="round">大野町 1.92%</text>
+<circle cx="509.6" cy="134.7" r="2.6" fill="currentColor" fill-opacity=".8"/>
+<text x="509.6" y="110.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="var(--shu)" paint-order="stroke" stroke="var(--paper)" stroke-width="3" stroke-linejoin="round">豊後高田市 1.17%</text>
+<circle cx="559.9" cy="201.9" r="2.6" fill="currentColor" fill-opacity=".8"/>
+<text x="559.9" y="192.9" font-size="11.5" font-weight="700" text-anchor="middle" fill="currentColor" paint-order="stroke" stroke="var(--paper)" stroke-width="3" stroke-linejoin="round">大分市 0.66%</text>
+<circle cx="535.2" cy="218.2" r="2.6" fill="currentColor" fill-opacity=".8"/>
+<text x="535.2" y="209.2" font-size="11.5" font-weight="700" text-anchor="middle" fill="currentColor" paint-order="stroke" stroke="var(--paper)" stroke-width="3" stroke-linejoin="round">野津原町 0.62%</text>
+<circle cx="530.1" cy="210.7" r="2.6" fill="currentColor" fill-opacity=".8"/>
+<text x="530.1" y="171.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="currentColor" paint-order="stroke" stroke="var(--paper)" stroke-width="3" stroke-linejoin="round">挾間町 0.46%</text>
+<circle cx="555.9" cy="244.2" r="2.6" fill="currentColor" fill-opacity=".8"/>
+<text x="555.9" y="265.2" font-size="11.5" font-weight="700" text-anchor="middle" fill="currentColor" paint-order="stroke" stroke="var(--paper)" stroke-width="3" stroke-linejoin="round">千歳村 0.43%</text>
+<circle cx="552.3" cy="257.4" r="2.6" fill="currentColor" fill-opacity=".8"/>
+<text x="552.3" y="293.4" font-size="11.5" font-weight="700" text-anchor="middle" fill="currentColor" paint-order="stroke" stroke="var(--paper)" stroke-width="3" stroke-linejoin="round">三重町 0.25%</text>
+<circle cx="540.3" cy="130.5" r="8" fill="var(--paper)" stroke="var(--shu)" stroke-width="3"/>
+<text x="552.3" y="134.5" font-size="12" font-weight="700" fill="currentColor" paint-order="stroke" stroke="var(--paper)" stroke-width="3" stroke-linejoin="round">長岩屋</text>
+</g>
+<rect x="14" y="14" width="732.0" height="620.0" rx="4" fill="none" stroke="currentColor" stroke-opacity=".18"/>
+<text x="14" y="656.0" font-size="11" fill="currentColor" fill-opacity=".7">濃さ＝その土地の全世帯に占める安東の割合</text>
+<circle cx="264.0" cy="652.0" r="9" fill="var(--shu)" opacity="0.24"/>
+<circle cx="306.0" cy="652.0" r="9" fill="var(--shu)" opacity="0.43"/>
+<circle cx="348.0" cy="652.0" r="9" fill="var(--shu)" opacity="0.67"/>
+<circle cx="390.0" cy="652.0" r="9" fill="var(--shu)" opacity="0.90"/>
+<text x="256.0" y="656.0" font-size="11" text-anchor="end" fill="currentColor" fill-opacity=".6">0.00%</text>
+<text x="404.0" y="656.0" font-size="11" fill="currentColor" fill-opacity=".6">1.72%</text>
+<line x1="14" y1="676.0" x2="179.4" y2="676.0" stroke="currentColor" stroke-opacity=".5" stroke-width="2"/>
+<text x="187.4" y="680.0" font-size="10" fill="currentColor" fill-opacity=".5">50 km</text>
+</svg>
+<figcaption>大分県と、隣接する福岡県・熊本県・宮崎県における安東姓の分布密度を示しています。朱色は、本籍のある豊後高田市を表します。姓の広がりは県境で区切られないため、隣接県も一枚に収めています。</figcaption></figure>
+
+<h3>長岩屋という土地</h3>
+<p>長岩屋は国東半島の中ほど、両子山から西へ流れる都甲川の上流にある谷です。『西国東郡誌』は、長さ一里あまりの峡谷に数百丈の絶壁が並ぶ土地として長岩屋を記し、「都甲耶馬」と呼ばれていたことを伝えています。弘安8年（1285）の豊後国図田帳には、長岩屋を含む七十町の都甲荘が、宇佐弥勒寺の領地として記載されています。江戸時代には島原藩（松平氏）の領地となり、村の寺は長岩屋山天念寺でした。明治8年（1875）には、旧都甲荘の10か村をまとめて都甲村と称しました。その後、明治22年（1889）の町村制で西都甲村の大字となり、昭和29年（1954）に豊後高田市となりました。天念寺の正月の修正鬼会は今も続き、国の重要無形民俗文化財に指定されています。</p>
+
+<h3>家の来歴</h3>
+<p class="hitokoto">長岩屋の安東家は、鎌倉時代から記録に現れる都甲の谷に住んできました。この谷は、六郷山の寺の山として記録されています。戦国時代には、本籍地から約9km離れた佐野で、同じ安東姓の人物が大友方として鞍懸城の戦いに加わっています。江戸時代には、佐野で庄屋を務めた安東家も続きました。長岩屋の安東家は、こうした複数の系譜につながる家です。</p>
+
+<h3>この一枚について</h3>
+<p>この一枚は、戸籍をお預かりする前に、刊行された記録のみをもとに判明している事柄をまとめたものです。これをさらに掘り下げ、一冊にまとめたものが「綴・見立帖」です。「綴・見立帖」では、お名字の分布を字ごとに詳しく調べ、菩提寺と考えられる寺院を挙げます。さらに、江戸時代の村や家に関する記録から、中世・戦国時代の記録まで幅広く調べます。</p>
+<p class="kono-ie">この家と同じ安東姓については、天正8年（1580）の鞍懸城の戦いで大友方として戦った安東宮内丞宛ての書状が、高田の二つの家に伝わっています。また、本籍地から約9km離れた佐野には、江戸時代を通じて庄屋を務めた安東家が続いています。見立帖では、この9通の書状と、庄屋を務めた安東家の記録に加え、本籍地のある長岩屋を含む都甲荘の中世の記録まで調べます。</p>
+
+
+</main>
+</body>
+</html>
